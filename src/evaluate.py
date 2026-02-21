@@ -52,7 +52,7 @@ with open("results/metrics.json", "w") as f:
     json.dump(metrics, f, indent=2)
 
 forecast_df = pd.DataFrame({
-    "timestamp": pd.date_range(start="2020-01-01", periods=len(test), freq="H"),
+    "timestamp": pd.date_range(start="2020-01-01", periods=len(test), freq="h"),
     "actual": test,
     "prediction": predictions,
     "lower_bound": lower,
