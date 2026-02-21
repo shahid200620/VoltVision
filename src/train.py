@@ -80,7 +80,7 @@ def main():
     run_preprocessing()
     run_feature_engineering()
 
-    wandb.init(project="VoltVision")
+    wandb.init(project="VoltVision", mode="offline")
 
     study = optuna.create_study(direction="minimize")
     study.optimize(objective, n_trials=3)
@@ -89,6 +89,8 @@ def main():
 
     with open("results/best_params.json", "w") as f:
         json.dump(best_params, f)
+    import subprocess
+    subprocess.run(["python", "src/evaluate.py"])
 
     wandb.finish()
 
